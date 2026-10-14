@@ -1,5 +1,6 @@
 import React from "react";
-import { Check, Code2, Cpu, Sparkles } from "lucide-react";
+import Image from "next/image";
+import { Check } from "lucide-react";
 
 export function About() {
   const principles = [
@@ -29,9 +30,20 @@ export function About() {
             About Us
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-8">
-            About SAIS Labs
-          </h2>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden bg-black ring-2 ring-gold-400/30 shrink-0 shadow-subtle">
+              <Image
+                src="/logo.png"
+                alt="SAIS Labs"
+                width={112}
+                height={112}
+                className="w-full h-full object-cover rounded-full"
+              />
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
+              About SAIS Labs
+            </h2>
+          </div>
 
           {/* Authentic exact copy */}
           <div className="space-y-5 text-base sm:text-lg text-foreground/80 leading-relaxed max-w-3xl">

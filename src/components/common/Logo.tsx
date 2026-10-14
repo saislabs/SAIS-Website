@@ -1,57 +1,65 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface LogoProps {
   className?: string;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
+  showText?: boolean;
   linkToHome?: boolean;
 }
 
 export function Logo({
   className = "",
   size = "md",
+  showText = true,
   linkToHome = true,
 }: LogoProps) {
-  const sizeClasses = {
-    sm: "text-lg tracking-tight",
-    md: "text-xl tracking-tight",
-    lg: "text-2xl tracking-tight",
+  const pixelDimensions = {
+    sm: 32,
+    md: 40,
+    lg: 52,
+    xl: 72,
   };
 
-  const markSize = {
-    sm: "w-5 h-5",
-    md: "w-6 h-6",
-    lg: "w-7 h-7",
-  };
+  const px = pixelDimensions[size];
 
   const content = (
     <div
-      className={`inline-flex items-center gap-2.5 font-sans select-none group ${className}`}
+      className={`inline-flex items-center gap-3 font-sans select-none group ${className}`}
       aria-label="SAIS Labs Home"
     >
-      {/* Clean architectural mark */}
+      {/* Official circular emblem */}
       <div
-        className={`${markSize[size]} rounded-md bg-foreground text-surface flex items-center justify-center font-bold relative overflow-hidden transition-transform duration-200 group-hover:scale-105 shadow-sm`}
+        className="relative rounded-full overflow-hidden bg-black shadow-subtle group-hover:shadow-logo ring-1 ring-black/80 transition-all duration-300 transform group-hover:scale-105 shrink-0"
+        style={{ width: `${px}px`, height: `${px}px` }}
       >
-        <span className="text-white text-xs font-semibold tracking-wider font-mono">
-          S
-        </span>
-        <div className="absolute top-0 right-0 w-1.5 h-1.5 bg-gold-500 rounded-bl-sm" />
+        <Image
+          src="/logo.png"
+          alt="SAIS Labs Official Logo"
+          width={px * 2}
+          height={px * 2}
+          priority
+          className="w-full h-full object-cover"
+        />
       </div>
 
-      {/* Typography wordmark */}
-      <div className="flex items-baseline">
-        <span
-          className={`font-bold text-foreground transition-colors group-hover:text-black ${sizeClasses[size]}`}
-        >
-          SAIS
-        </span>
-        <span
-          className={`font-medium text-muted ml-1 uppercase text-xs tracking-widest transition-colors group-hover:text-foreground`}
-        >
-          LABS
-        </span>
-      </div>
+      {/* Clean typographic lockup */}
+      {showText && (
+        <div className="flex flex-col">
+          <div className="flex items-baseline gap-1.5 leading-none">
+            <span className="font-extrabold text-foreground tracking-tight text-lg sm:text-xl font-sans group-hover:text-black transition-colors">
+              SAIS
+            </span>
+            <span className="font-bold text-xs tracking-widest uppercase text-gold-600 transition-colors">
+              LABS
+            </span>
+          </div>
+          <span className="text-[10px] tracking-wider uppercase text-muted font-medium mt-1 leading-none">
+            Technology Studio
+          </span>
+        </div>
+      )}
     </div>
   );
 
@@ -62,7 +70,7 @@ export function Logo({
   return (
     <Link
       href="#home"
-      className="inline-flex items-center focus-visible:ring-2 focus-visible:ring-gold-500 rounded-md transition-opacity hover:opacity-90"
+      className="inline-flex items-center focus-visible:ring-2 focus-visible:ring-gold-500 rounded-lg transition-opacity hover:opacity-95"
     >
       {content}
     </Link>
