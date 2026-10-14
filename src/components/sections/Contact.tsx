@@ -176,7 +176,7 @@ export function Contact() {
     <section
       id="contact"
       aria-label="Contact SAIS Labs"
-      className="py-20 md:py-28 bg-subtle/30 border-t border-border/80 scroll-mt-12"
+      className="py-20 md:py-28 bg-subtle border-t border-border scroll-mt-12"
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -548,11 +548,11 @@ export function Contact() {
                     <button
                       type="submit"
                       disabled={status === "submitting"}
-                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-foreground text-surface hover:bg-black font-medium text-sm transition-all duration-200 shadow-sm disabled:opacity-60 disabled:cursor-not-allowed focus-visible:ring-2 focus-visible:ring-gold-500"
+                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-gold-500 hover:bg-gold-400 text-foreground font-semibold text-sm transition-all duration-200 shadow-subtle hover:shadow-card disabled:opacity-60 disabled:cursor-not-allowed focus-visible:ring-2 focus-visible:ring-foreground"
                     >
                       {status === "submitting" ? (
                         <>
-                          <div className="w-4 h-4 border-2 border-surface border-t-transparent rounded-full animate-spin" />
+                          <div className="w-4 h-4 border-2 border-foreground border-t-transparent rounded-full animate-spin" />
                           <span>Submitting Requirements...</span>
                         </>
                       ) : (

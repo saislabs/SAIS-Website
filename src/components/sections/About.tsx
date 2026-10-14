@@ -22,16 +22,16 @@ export function About() {
     <section
       id="about"
       aria-label="About SAIS Labs"
-      className="py-20 md:py-28 bg-subtle/50 border-t border-border/80"
+      className="py-20 md:py-28 bg-subtle border-t border-border"
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-surface rounded-2xl border border-border p-8 sm:p-12 md:p-16 shadow-subtle">
+        <div className="bg-surface rounded-2xl border border-border p-8 sm:p-12 md:p-16 shadow-card">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-subtle text-xs font-semibold uppercase tracking-wider text-muted mb-6">
             About Us
           </div>
 
           <div className="flex items-center gap-4 mb-8">
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden bg-black ring-2 ring-gold-400/30 shrink-0 shadow-subtle">
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden bg-black ring-2 ring-gold-400/40 shrink-0 shadow-subtle">
               <Image
                 src="/logo.png"
                 alt="SAIS Labs"
@@ -63,7 +63,7 @@ export function About() {
           </div>
 
           {/* Core guiding principles */}
-          <div className="mt-12 pt-10 border-t border-border/80 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="mt-12 pt-10 border-t border-border grid grid-cols-1 md:grid-cols-3 gap-6">
             {principles.map((p, idx) => (
               <div key={idx} className="space-y-2">
                 <div className="flex items-center gap-2 text-foreground font-semibold text-sm">

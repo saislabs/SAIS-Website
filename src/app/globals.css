@@ -3,12 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --background: #FBFBFA;
+  --background: #FAF9F5;
   --foreground: #111827;
   --surface: #FFFFFF;
-  --subtle: #F4F4F1;
+  --subtle: #F3F1EA;
+  --muted: #5B6472;
   --border: #E5E7EB;
-  --gold-accent: #B89628;
+  --gold-accent: #D3AF13;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -42,15 +43,15 @@ body {
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
-/* Custom focus ring for accessibility */
+/* Custom focus ring for accessibility adhering to WCAG AA */
 *:focus-visible {
-  outline: 2px solid #B89628;
+  outline: 2px solid #D3AF13;
   outline-offset: 2px;
 }
 
 /* Selection color */
 ::selection {
-  background-color: #F7F0D4;
+  background-color: #FAF5D5;
   color: #111827;
 }
 

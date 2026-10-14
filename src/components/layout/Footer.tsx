@@ -15,17 +15,17 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-surface border-t border-border pt-16 pb-12 text-foreground">
+    <footer className="bg-dark-bg border-t border-dark-border pt-16 pb-12 text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-border/80">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-dark-border">
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
-            <Logo size="lg" />
-            <p className="text-sm text-muted max-w-sm leading-relaxed">
+            <Logo size="lg" variant="dark" />
+            <p className="text-sm text-dark-muted max-w-sm leading-relaxed">
               Practical websites and digital solutions for better business
               workflows.
             </p>
-            <p className="text-xs text-muted/70">
+            <p className="text-xs text-dark-muted/80">
               Modern digital development, intelligent workflow automations, and
               practical tech guidance.
             </p>
@@ -37,11 +37,11 @@ export function Footer() {
                   href={siteConfig.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3 py-1.5 rounded-lg border border-border bg-subtle hover:bg-surface text-xs font-medium text-foreground inline-flex items-center gap-1.5 transition-colors group"
+                  className="px-3 py-1.5 rounded-lg border border-dark-border bg-gray-900/60 hover:bg-gray-800 text-xs font-medium text-white inline-flex items-center gap-1.5 transition-colors group"
                 >
-                  <Linkedin className="w-3.5 h-3.5 text-blue-600" />
+                  <Linkedin className="w-3.5 h-3.5 text-blue-400" />
                   <span>Surya M</span>
-                  <ArrowUpRight className="w-3 h-3 text-muted group-hover:text-foreground" />
+                  <ArrowUpRight className="w-3 h-3 text-dark-muted group-hover:text-white" />
                 </a>
               )}
 
@@ -50,11 +50,11 @@ export function Footer() {
                   href={siteConfig.social.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3 py-1.5 rounded-lg border border-border bg-subtle hover:bg-surface text-xs font-medium text-foreground inline-flex items-center gap-1.5 transition-colors group"
+                  className="px-3 py-1.5 rounded-lg border border-dark-border bg-gray-900/60 hover:bg-gray-800 text-xs font-medium text-white inline-flex items-center gap-1.5 transition-colors group"
                 >
-                  <Instagram className="w-3.5 h-3.5 text-pink-600" />
+                  <Instagram className="w-3.5 h-3.5 text-pink-400" />
                   <span>@saislabs</span>
-                  <ArrowUpRight className="w-3 h-3 text-muted group-hover:text-foreground" />
+                  <ArrowUpRight className="w-3 h-3 text-dark-muted group-hover:text-white" />
                 </a>
               )}
             </div>
@@ -62,14 +62,14 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-3">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-white">
               Navigation
             </h4>
-            <ul className="space-y-2 text-sm text-muted">
+            <ul className="space-y-2 text-sm text-dark-muted">
               <li>
                 <Link
                   href="#home"
-                  className="hover:text-foreground transition-colors"
+                  className="hover:text-white transition-colors"
                 >
                   Home
                 </Link>
@@ -77,7 +77,7 @@ export function Footer() {
               <li>
                 <Link
                   href="#services"
-                  className="hover:text-foreground transition-colors"
+                  className="hover:text-white transition-colors"
                 >
                   Services
                 </Link>
@@ -85,7 +85,7 @@ export function Footer() {
               <li>
                 <Link
                   href="#about"
-                  className="hover:text-foreground transition-colors"
+                  className="hover:text-white transition-colors"
                 >
                   About SAIS Labs
                 </Link>
@@ -93,7 +93,7 @@ export function Footer() {
               <li>
                 <Link
                   href="#contact"
-                  className="hover:text-foreground transition-colors"
+                  className="hover:text-white transition-colors"
                 >
                   Contact & Inquiries
                 </Link>
@@ -103,17 +103,17 @@ export function Footer() {
 
           {/* Services List */}
           <div className="space-y-3">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-white">
               Core Services
             </h4>
-            <ul className="space-y-2 text-sm text-muted">
+            <ul className="space-y-2 text-sm text-dark-muted">
               {siteConfig.services.map((s) => (
                 <li key={s.id}>
                   <Link
                     href={`#contact?service=${encodeURIComponent(
                       s.formServiceOption
                     )}`}
-                    className="hover:text-foreground transition-colors line-clamp-1"
+                    className="hover:text-white transition-colors line-clamp-1"
                   >
                     {s.title}
                   </Link>
@@ -124,16 +124,16 @@ export function Footer() {
 
           {/* Direct Contact Details */}
           <div className="space-y-3">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-white">
               Direct Contact
             </h4>
-            <div className="space-y-2.5 text-sm text-muted">
+            <div className="space-y-2.5 text-sm text-dark-muted">
               {/* Email */}
               <a
                 href={`mailto:${siteConfig.contact.email}`}
-                className="flex items-center gap-2 hover:text-foreground transition-colors break-all"
+                className="flex items-center gap-2 hover:text-white transition-colors break-all"
               >
-                <Mail className="w-3.5 h-3.5 text-gold-600 shrink-0" />
+                <Mail className="w-3.5 h-3.5 text-gold-500 shrink-0" />
                 <span className="text-xs sm:text-sm">{siteConfig.contact.email}</span>
               </a>
 
@@ -141,9 +141,9 @@ export function Footer() {
               {siteConfig.contact.phone && (
                 <a
                   href={`tel:${siteConfig.contact.whatsappNumber}`}
-                  className="flex items-center gap-2 hover:text-foreground transition-colors"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
                 >
-                  <Phone className="w-3.5 h-3.5 text-gold-600 shrink-0" />
+                  <Phone className="w-3.5 h-3.5 text-gold-500 shrink-0" />
                   <span className="text-xs sm:text-sm">{siteConfig.contact.phone}</span>
                 </a>
               )}
@@ -157,14 +157,14 @@ export function Footer() {
                   )}?text=${encodeURIComponent(siteConfig.contact.whatsappPrefillMessage)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:text-foreground transition-colors"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
                 >
-                  <MessageCircle className="w-3.5 h-3.5 text-green-600 shrink-0" />
+                  <MessageCircle className="w-3.5 h-3.5 text-green-400 shrink-0" />
                   <span className="text-xs sm:text-sm">WhatsApp Chat</span>
                 </a>
               )}
 
-              <p className="text-xs text-muted/80 pt-1">
+              <p className="text-xs text-dark-muted/70 pt-1">
                 {siteConfig.contact.locationPlaceholder}
               </p>
             </div>
@@ -172,18 +172,18 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-muted gap-4">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-dark-muted gap-4">
           <p>© {currentYear} SAIS Labs. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link
               href="/privacy"
-              className="hover:text-foreground transition-colors underline underline-offset-4"
+              className="hover:text-white transition-colors underline underline-offset-4"
             >
               Privacy Policy
             </Link>
             <Link
               href="#home"
-              className="hover:text-foreground transition-colors"
+              className="hover:text-white transition-colors"
             >
               Back to Top ↑
             </Link>

@@ -32,11 +32,11 @@ export function WhyUs() {
   return (
     <section
       aria-label="Why SAIS Labs"
-      className="py-20 md:py-28 bg-surface"
+      className="py-20 md:py-28 bg-background border-t border-border/60"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-subtle text-xs font-semibold uppercase tracking-wider text-muted mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface text-xs font-semibold uppercase tracking-wider text-muted mb-4">
             Our Approach
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
@@ -54,7 +54,7 @@ export function WhyUs() {
             return (
               <div
                 key={index}
-                className="p-6 rounded-xl border border-border bg-background/50 hover:bg-surface hover:shadow-card transition-all duration-300 flex flex-col justify-between"
+                className="p-6 rounded-xl border border-border bg-surface shadow-subtle hover:shadow-card hover:border-gold-300 transition-all duration-200 flex flex-col justify-between"
               >
                 <div>
                   <div className="w-10 h-10 rounded-lg bg-gold-50 border border-gold-200/80 flex items-center justify-center text-gold-600 mb-5">

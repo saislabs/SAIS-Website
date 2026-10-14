@@ -7,6 +7,7 @@ interface LogoProps {
   size?: "sm" | "md" | "lg" | "xl";
   showText?: boolean;
   linkToHome?: boolean;
+  variant?: "light" | "dark";
 }
 
 export function Logo({
@@ -14,11 +15,12 @@ export function Logo({
   size = "md",
   showText = true,
   linkToHome = true,
+  variant = "light",
 }: LogoProps) {
   const pixelDimensions = {
     sm: 32,
     md: 40,
-    lg: 52,
+    lg: 48,
     xl: 72,
   };
 
@@ -31,7 +33,7 @@ export function Logo({
     >
       {/* Official circular emblem */}
       <div
-        className="relative rounded-full overflow-hidden bg-black shadow-subtle group-hover:shadow-logo ring-1 ring-black/80 transition-all duration-300 transform group-hover:scale-105 shrink-0"
+        className="relative rounded-full overflow-hidden bg-black shadow-subtle group-hover:shadow-logo ring-1 ring-gold-400/30 transition-all duration-300 transform group-hover:scale-105 shrink-0"
         style={{ width: `${px}px`, height: `${px}px` }}
       >
         <Image
@@ -48,14 +50,24 @@ export function Logo({
       {showText && (
         <div className="flex flex-col">
           <div className="flex items-baseline gap-1.5 leading-none">
-            <span className="font-extrabold text-foreground tracking-tight text-lg sm:text-xl font-sans group-hover:text-black transition-colors">
+            <span
+              className={`font-extrabold tracking-tight text-lg sm:text-xl font-sans transition-colors ${
+                variant === "dark"
+                  ? "text-white group-hover:text-gold-200"
+                  : "text-foreground group-hover:text-black"
+              }`}
+            >
               SAIS
             </span>
-            <span className="font-bold text-xs tracking-widest uppercase text-gold-600 transition-colors">
+            <span className="font-bold text-xs tracking-widest uppercase text-gold-500 transition-colors">
               LABS
             </span>
           </div>
-          <span className="text-[10px] tracking-wider uppercase text-muted font-medium mt-1 leading-none">
+          <span
+            className={`text-[10px] tracking-wider uppercase font-medium mt-1 leading-none ${
+              variant === "dark" ? "text-dark-muted" : "text-muted"
+            }`}
+          >
             Technology Studio
           </span>
         </div>

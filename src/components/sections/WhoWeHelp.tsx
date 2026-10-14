@@ -46,11 +46,11 @@ export function WhoWeHelp() {
   return (
     <section
       aria-label="Who We Help"
-      className="py-20 md:py-28 bg-surface border-t border-border/80"
+      className="py-20 md:py-28 bg-background border-t border-border"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-subtle text-xs font-semibold uppercase tracking-wider text-muted mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface text-xs font-semibold uppercase tracking-wider text-muted mb-4">
             Audience
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
@@ -69,9 +69,9 @@ export function WhoWeHelp() {
             return (
               <div
                 key={idx}
-                className="p-6 rounded-xl border border-border bg-background/50 hover:bg-surface hover:shadow-subtle transition-all duration-200"
+                className="p-6 rounded-xl border border-border bg-surface shadow-subtle hover:shadow-card hover:border-gold-300 transition-all duration-200"
               >
-                <div className="w-9 h-9 rounded-lg bg-subtle border border-border flex items-center justify-center text-foreground mb-4">
+                <div className="w-9 h-9 rounded-lg bg-gold-50/70 border border-gold-200/60 flex items-center justify-center text-foreground mb-4">
                   <Icon className="w-4 h-4 text-gold-600" aria-hidden="true" />
                 </div>
                 <h3 className="text-base font-bold text-foreground mb-2">
@@ -85,7 +85,7 @@ export function WhoWeHelp() {
           })}
 
           {/* Call to action card */}
-          <div className="p-6 rounded-xl border border-gold-300/80 bg-gold-50/40 flex flex-col justify-between">
+          <div className="p-6 rounded-xl border border-gold-300/80 bg-gold-50/50 flex flex-col justify-between shadow-subtle">
             <div>
               <span className="text-xs font-mono font-semibold text-gold-700 uppercase tracking-wider">
                 GET IN TOUCH
@@ -98,7 +98,7 @@ export function WhoWeHelp() {
                 approach to your business setup.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-gold-200/60">
+            <div className="mt-6 pt-4 border-t border-gold-200/70">
               <Link
                 href="#contact"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-gold-700 transition-colors"

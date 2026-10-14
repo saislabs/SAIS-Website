@@ -56,11 +56,11 @@ export function FAQ() {
   return (
     <section
       aria-label="Frequently Asked Questions"
-      className="py-20 md:py-28 bg-surface border-t border-border/80"
+      className="py-20 md:py-28 bg-background border-t border-border"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-subtle text-xs font-semibold uppercase tracking-wider text-muted mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface text-xs font-semibold uppercase tracking-wider text-muted mb-4">
             Common Inquiries
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
@@ -80,7 +80,7 @@ export function FAQ() {
             return (
               <div
                 key={index}
-                className="border border-border rounded-xl bg-background/50 overflow-hidden transition-colors duration-200 hover:border-border/80"
+                className="border border-border rounded-xl bg-surface shadow-subtle overflow-hidden transition-all duration-200 hover:border-gold-300"
               >
                 <h3>
                   <button
@@ -91,7 +91,7 @@ export function FAQ() {
                     onClick={() => toggleAccordion(index)}
                     className="w-full flex items-center justify-between p-5 sm:p-6 text-left font-semibold text-foreground hover:text-black focus-visible:ring-2 focus-visible:ring-gold-500 rounded-lg transition-colors"
                   >
-                    <span className="text-base sm:text-lg pr-4">
+                    <span className="text-base sm:text-lg pr-4 leading-snug">
                       {faq.question}
                     </span>
                     <ChevronDown
@@ -108,7 +108,7 @@ export function FAQ() {
                     id={panelId}
                     role="region"
                     aria-labelledby={headingId}
-                    className="px-5 pb-6 sm:px-6 sm:pb-6 pt-1 text-sm sm:text-base text-muted leading-relaxed border-t border-border/40 animate-fade-in"
+                    className="px-5 pb-6 sm:px-6 sm:pb-6 pt-1 text-sm sm:text-base text-muted leading-relaxed border-t border-border/50 animate-fade-in"
                   >
                     <p>{faq.answer}</p>
                   </div>
