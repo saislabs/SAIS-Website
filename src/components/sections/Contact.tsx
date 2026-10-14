@@ -165,6 +165,13 @@ export function Contact() {
     `Hello SAIS Labs,\n\nName: ${values.name}\nBusiness: ${values.businessName}\nService: ${values.service}\n\nProject Overview:\n${values.description}\n`
   )}`;
 
+  const whatsappForwardLink = `https://wa.me/${siteConfig.contact.whatsappNumber.replace(
+    /[^\d+]/g,
+    ""
+  )}?text=${encodeURIComponent(
+    `Hello Surya (SAIS Labs),\n\nI just submitted an enquiry on the website:\n*Name:* ${values.name}\n*Business:* ${values.businessName || "N/A"}\n*Email:* ${values.email}\n*Service:* ${values.service}\n\n*Project Overview:*\n${values.description}`
+  )}`;
+
   return (
     <section
       id="contact"
@@ -299,20 +306,53 @@ export function Contact() {
                 <div
                   role="status"
                   aria-live="polite"
-                  className="text-center py-10 space-y-4 animate-fade-in"
+                  className="py-6 sm:py-8 space-y-6 animate-fade-in"
                 >
-                  <div className="w-12 h-12 rounded-full bg-green-50 border border-green-200 text-green-600 flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-6 h-6" />
+                  <div className="text-center space-y-2">
+                    <div className="w-12 h-12 rounded-full bg-green-50 border border-green-200 text-green-600 flex items-center justify-center mx-auto mb-3 shadow-subtle">
+                      <CheckCircle2 className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground">
+                      Enquiry Logged Successfully!
+                    </h3>
+                    <p className="text-sm text-muted max-w-md mx-auto leading-relaxed">
+                      Thank you, <span className="font-semibold text-foreground">{values.name}</span>. Your enquiry for{" "}
+                      <span className="font-semibold text-foreground">{values.service}</span> has been received and saved.
+                    </p>
                   </div>
-                  <h3 className="text-2xl font-bold text-foreground">
-                    Enquiry Received
-                  </h3>
-                  <p className="text-sm text-muted max-w-md mx-auto leading-relaxed">
-                    Thank you, <span className="font-semibold text-foreground">{values.name}</span>. We have received your inquiry regarding{" "}
-                    <span className="font-semibold text-foreground">{values.service}</span>. We will review your project requirements and follow up via email at{" "}
-                    <span className="font-semibold text-foreground">{values.email}</span>.
-                  </p>
-                  <div className="pt-4">
+
+                  {/* Immediate Direct Send / Forwarding Buttons */}
+                  <div className="bg-subtle/70 rounded-xl p-5 border border-border space-y-3.5">
+                    <p className="text-xs font-bold uppercase tracking-wider text-foreground text-center">
+                      Get an instant response from Surya:
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <a
+                        href={whatsappForwardLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-white font-medium text-sm transition-all duration-200 shadow-sm hover:shadow group"
+                      >
+                        <MessageCircle className="w-4 h-4 transition-transform group-hover:scale-110" />
+                        <span>Send to WhatsApp</span>
+                      </a>
+
+                      <a
+                        href={mailtoLink}
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-foreground hover:bg-black text-surface font-medium text-sm transition-all duration-200 shadow-sm hover:shadow group"
+                      >
+                        <Mail className="w-4 h-4 transition-transform group-hover:scale-110" />
+                        <span>Send via Gmail</span>
+                      </a>
+                    </div>
+
+                    <p className="text-[11px] text-muted text-center leading-normal">
+                      Clicking either button opens your app with the filled details to send directly to Surya M (+91 63807 28543 / suryaaisolutions21@gmail.com).
+                    </p>
+                  </div>
+
+                  <div className="text-center pt-2">
                     <button
                       type="button"
                       onClick={() => {
@@ -326,7 +366,7 @@ export function Contact() {
                         });
                         setTouched({});
                       }}
-                      className="px-5 py-2.5 rounded-lg border border-border bg-subtle hover:bg-subtle/80 text-sm font-medium text-foreground transition-colors"
+                      className="px-5 py-2.5 rounded-lg border border-border bg-surface hover:bg-subtle text-xs font-medium text-foreground transition-colors"
                     >
                       Submit Another Inquiry
                     </button>

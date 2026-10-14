@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { siteConfig } from "@/config/site";
+import fs from "fs";
+import path from "path";
 
 interface ContactPayload {
   name: string;
@@ -12,7 +14,6 @@ interface ContactPayload {
 export async function POST(request: Request) {
   try {
     const body: ContactPayload = await request.json();
-
     const { name, businessName, email, service, description } = body;
 
     // Strict Server-Side Validation
@@ -56,34 +57,59 @@ export async function POST(request: Request) {
       );
     }
 
-    // Secure processing
-    // In production on Vercel, you can set RESEND_API_KEY or webhook url in environment variables
-    const recipientEmail =
-      process.env.CONTACT_RECEIVER_EMAIL || siteConfig.contact.email;
-
-    // Log the enquiry securely on the server
-    console.log("[SAIS Labs Contact Enquiry Received]:", {
+    const newEnquiry = {
+      id: `enq_${Date.now()}`,
       timestamp: new Date().toISOString(),
       name: name.trim(),
       businessName: businessName?.trim() || "N/A",
       email: email.trim(),
       service,
-      descriptionLength: description.trim().length,
-      recipient: recipientEmail,
-    });
+      description: description.trim(),
+    };
 
-    // If RESEND_API_KEY is configured in env, we can dispatch via Resend API
+    // 1. Save to local data/enquiries.json so no leads are ever lost
+    try {
+      const dataDir = path.join(process.cwd(), "data");
+      const filePath = path.join(dataDir, "enquiries.json");
+
+      if (!fs.existsSync(dataDir)) {
+        fs.mkdirSync(dataDir, { recursive: true });
+      }
+
+      let existing: unknown[] = [];
+      if (fs.existsSync(filePath)) {
+        const fileContent = fs.readFileSync(filePath, "utf-8");
+        try {
+          existing = JSON.parse(fileContent);
+        } catch {
+          existing = [];
+        }
+      }
+
+      existing.unshift(newEnquiry);
+      fs.writeFileSync(filePath, JSON.stringify(existing, null, 2), "utf-8");
+    } catch (saveErr) {
+      console.warn("Could not save to enquiries.json file:", saveErr);
+    }
+
+    // 2. Log in server console
+    console.log("[SAIS Labs New Enquiry Received]:", newEnquiry);
+
+    // 3. Automated dispatch if RESEND_API_KEY is configured
+    const recipientEmail =
+      process.env.CONTACT_RECEIVER_EMAIL || siteConfig.contact.email;
     const resendApiKey = process.env.RESEND_API_KEY;
+
     if (resendApiKey) {
       try {
-        const emailRes = await fetch("https://api.resend.com/emails", {
+        await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${resendApiKey}`,
           },
           body: JSON.stringify({
-            from: "SAIS Labs Form <onboarding@resend.dev>",
+            from: "SAIS Labs <onboarding@resend.dev>",
             to: [recipientEmail],
             reply_to: email.trim(),
             subject: `New Project Enquiry from ${name.trim()} - SAIS Labs`,
@@ -92,13 +118,31 @@ export async function POST(request: Request) {
             }\nEmail: ${email.trim()}\nService: ${service}\n\nProject Description:\n${description.trim()}`,
           }),
         });
+      } catch (err) {
+        console.error("Resend API dispatch error:", err);
+      }
+    }
 
-        if (!emailRes.ok) {
-          console.error("Resend delivery warning:", await emailRes.text());
-        }
-      } catch (sendErr) {
-        console.error("Failed to forward via external email provider:", sendErr);
-        // We still acknowledge the request received
+    // 4. Automated dispatch if WEB3FORMS_ACCESS_KEY is configured
+    const web3FormsKey = process.env.WEB3FORMS_ACCESS_KEY;
+    if (web3FormsKey) {
+      try {
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            access_key: web3FormsKey,
+            subject: `New Lead from ${name.trim()} - SAIS Labs`,
+            from_name: "SAIS Labs Website",
+            name: name.trim(),
+            email: email.trim(),
+            business: businessName?.trim() || "N/A",
+            service: service,
+            message: description.trim(),
+          }),
+        });
+      } catch (err) {
+        console.error("Web3Forms dispatch error:", err);
       }
     }
 
@@ -106,7 +150,8 @@ export async function POST(request: Request) {
       {
         success: true,
         message:
-          "Thank you for contacting SAIS Labs. Your project enquiry has been received.",
+          "Thank you! Your project enquiry has been securely received by SAIS Labs.",
+        enquiry: newEnquiry,
       },
       { status: 200 }
     );
@@ -115,7 +160,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error:
-          "There was an unexpected error submitting your request. Please email us directly.",
+          "There was an unexpected error submitting your request. Please email or WhatsApp us directly.",
       },
       { status: 500 }
     );
