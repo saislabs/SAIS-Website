@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #FBFBFA;
+  --foreground: #111827;
+  --surface: #FFFFFF;
+  --subtle: #F4F4F1;
+  --border: #E5E7EB;
+  --gold-accent: #B89628;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Custom focus ring for accessibility */
+*:focus-visible {
+  outline: 2px solid #B89628;
+  outline-offset: 2px;
+}
+
+/* Selection color */
+::selection {
+  background-color: #F7F0D4;
+  color: #111827;
+}
+
+/* Subtle border utility */
+.border-subtle {
+  border-color: rgba(229, 231, 235, 0.9);
+}
+
+/* Clean glass effect where appropriate */
+.subtle-blur {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
