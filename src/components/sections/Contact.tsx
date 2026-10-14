@@ -9,6 +9,8 @@ import {
   MessageSquare,
   Clock,
   Sparkles,
+  Phone,
+  MessageCircle,
 } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
@@ -206,6 +208,45 @@ export function Contact() {
                       className="text-sm font-medium text-foreground hover:text-gold-700 transition-colors break-all"
                     >
                       {siteConfig.contact.email}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-gold-50 border border-gold-200/60 flex items-center justify-center text-gold-600 shrink-0 mt-0.5">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-semibold text-muted uppercase tracking-wider block">
+                      Phone & Direct Call
+                    </span>
+                    <a
+                      href={`tel:${siteConfig.contact.whatsappNumber}`}
+                      className="text-sm font-medium text-foreground hover:text-gold-700 transition-colors block"
+                    >
+                      {siteConfig.contact.phone}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-green-50 border border-green-200/60 flex items-center justify-center text-green-600 shrink-0 mt-0.5">
+                    <MessageCircle className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-semibold text-muted uppercase tracking-wider block">
+                      WhatsApp Quick Chat
+                    </span>
+                    <a
+                      href={`https://wa.me/${siteConfig.contact.whatsappNumber.replace(
+                        /[^\d+]/g,
+                        ""
+                      )}?text=${encodeURIComponent(siteConfig.contact.whatsappPrefillMessage)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium text-green-700 hover:text-green-800 transition-colors underline underline-offset-2 block"
+                    >
+                      Chat on WhatsApp (+91 63807 28543)
                     </a>
                   </div>
                 </div>

@@ -5,18 +5,15 @@ export interface SiteConfig {
   description: string;
   url: string;
   contact: {
-    // Leave placeholder or replace with verified email address
-    // e.g. "contact@saislabs.com" or "hello@saislabs.com"
     email: string;
-    // Set to your valid international WhatsApp number (e.g. "+919876543210")
-    // When empty (""), the floating WhatsApp button and WhatsApp links are safely hidden.
+    phone: string;
     whatsappNumber: string;
     whatsappPrefillMessage: string;
     locationPlaceholder: string;
   };
   social: {
-    // Only populated platforms with real URLs are displayed in the footer
     linkedin?: string;
+    instagram?: string;
     twitter?: string;
     github?: string;
   };
@@ -40,21 +37,22 @@ export const siteConfig: SiteConfig = {
     "SAIS Labs helps businesses create professional websites, automate repetitive tasks, and build practical digital solutions that make everyday work simpler.",
   url: "https://saislabs.com",
 
-  // Central contact configuration
-  // Replace placeholders with verified business details when ready
+  // Central verified contact configuration
   contact: {
-    email: "contact@saislabs.com", // update to your verified business email
-    whatsappNumber: "", // Set to e.g. "+91XXXXXXXXXX" to enable the WhatsApp button
+    email: "suryaaisolutions21@gmail.com",
+    phone: "+91 63807 28543",
+    whatsappNumber: "+916380728543",
     whatsappPrefillMessage:
       "Hello SAIS Labs, I'm interested in discussing a project for my business.",
-    locationPlaceholder: "India • Serving Global Clients",
+    locationPlaceholder: "Tamil Nadu, India • Serving Global Clients",
   },
 
-  // Social profiles (only non-empty URLs will be displayed)
+  // Verified social profiles
   social: {
-    linkedin: "", // e.g. "https://linkedin.com/company/saislabs"
+    linkedin: "https://www.linkedin.com/in/surya21012007/",
+    instagram: "https://www.instagram.com/saislabs",
     twitter: "",
-    github: "", // e.g. "https://github.com/saislabs"
+    github: "",
   },
 
   services: [

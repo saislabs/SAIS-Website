@@ -2,15 +2,17 @@ import React from "react";
 import Link from "next/link";
 import { Logo } from "@/components/common/Logo";
 import { siteConfig } from "@/config/site";
-import { Mail, MessageCircle, ArrowUpRight } from "lucide-react";
+import {
+  Mail,
+  MessageCircle,
+  Phone,
+  ArrowUpRight,
+  Linkedin,
+  Instagram,
+} from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-
-  // Filter social links that are actually configured
-  const configuredSocial = Object.entries(siteConfig.social).filter(
-    ([_, url]) => url && url.trim().length > 0 && !url.includes("example.com")
-  );
 
   return (
     <footer className="bg-surface border-t border-border pt-16 pb-12 text-foreground">
@@ -28,23 +30,34 @@ export function Footer() {
               practical tech guidance.
             </p>
 
-            {/* Display social links ONLY if configured */}
-            {configuredSocial.length > 0 && (
-              <div className="pt-2 flex items-center gap-3">
-                {configuredSocial.map(([platform, url]) => (
-                  <a
-                    key={platform}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-medium text-muted hover:text-foreground inline-flex items-center gap-1 transition-colors capitalize"
-                  >
-                    <span>{platform}</span>
-                    <ArrowUpRight className="w-3 h-3" />
-                  </a>
-                ))}
-              </div>
-            )}
+            {/* Verified Social Profiles */}
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              {siteConfig.social.linkedin && (
+                <a
+                  href={siteConfig.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 rounded-lg border border-border bg-subtle hover:bg-surface text-xs font-medium text-foreground inline-flex items-center gap-1.5 transition-colors group"
+                >
+                  <Linkedin className="w-3.5 h-3.5 text-blue-600" />
+                  <span>Surya M</span>
+                  <ArrowUpRight className="w-3 h-3 text-muted group-hover:text-foreground" />
+                </a>
+              )}
+
+              {siteConfig.social.instagram && (
+                <a
+                  href={siteConfig.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 rounded-lg border border-border bg-subtle hover:bg-surface text-xs font-medium text-foreground inline-flex items-center gap-1.5 transition-colors group"
+                >
+                  <Instagram className="w-3.5 h-3.5 text-pink-600" />
+                  <span>@saislabs</span>
+                  <ArrowUpRight className="w-3 h-3 text-muted group-hover:text-foreground" />
+                </a>
+              )}
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -109,37 +122,47 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact Details */}
+          {/* Direct Contact Details */}
           <div className="space-y-3">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground">
               Direct Contact
             </h4>
-            <div className="space-y-2 text-sm text-muted">
-              {siteConfig.contact.email && (
+            <div className="space-y-2.5 text-sm text-muted">
+              {/* Email */}
+              <a
+                href={`mailto:${siteConfig.contact.email}`}
+                className="flex items-center gap-2 hover:text-foreground transition-colors break-all"
+              >
+                <Mail className="w-3.5 h-3.5 text-gold-600 shrink-0" />
+                <span className="text-xs sm:text-sm">{siteConfig.contact.email}</span>
+              </a>
+
+              {/* Phone */}
+              {siteConfig.contact.phone && (
                 <a
-                  href={`mailto:${siteConfig.contact.email}`}
-                  className="flex items-center gap-2 hover:text-foreground transition-colors break-all"
+                  href={`tel:${siteConfig.contact.whatsappNumber}`}
+                  className="flex items-center gap-2 hover:text-foreground transition-colors"
                 >
-                  <Mail className="w-3.5 h-3.5 text-gold-600 shrink-0" />
-                  <span>{siteConfig.contact.email}</span>
+                  <Phone className="w-3.5 h-3.5 text-gold-600 shrink-0" />
+                  <span className="text-xs sm:text-sm">{siteConfig.contact.phone}</span>
                 </a>
               )}
 
-              {siteConfig.contact.whatsappNumber &&
-                !siteConfig.contact.whatsappNumber.includes("XXXXX") && (
-                  <a
-                    href={`https://wa.me/${siteConfig.contact.whatsappNumber.replace(
-                      /[^\d+]/g,
-                      ""
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 hover:text-foreground transition-colors"
-                  >
-                    <MessageCircle className="w-3.5 h-3.5 text-green-600 shrink-0" />
-                    <span>WhatsApp Inquiry</span>
-                  </a>
-                )}
+              {/* WhatsApp */}
+              {siteConfig.contact.whatsappNumber && (
+                <a
+                  href={`https://wa.me/${siteConfig.contact.whatsappNumber.replace(
+                    /[^\d+]/g,
+                    ""
+                  )}?text=${encodeURIComponent(siteConfig.contact.whatsappPrefillMessage)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-foreground transition-colors"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 text-green-600 shrink-0" />
+                  <span className="text-xs sm:text-sm">WhatsApp Chat</span>
+                </a>
+              )}
 
               <p className="text-xs text-muted/80 pt-1">
                 {siteConfig.contact.locationPlaceholder}
